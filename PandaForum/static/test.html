@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.css" />
+</head>
+
+<body>
+
+<div class="container"></div>
+    <div class="media">
+        <a class="media-left media-top" href="#">
+            <img src="images/img.ico"  class="media-left media-top" alt="Topic">
+        </a>    
+        <div class="media-body">
+            <h5 class="media-heading">
+                {{ eachTopic.title }}
+            </h5>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae inventore asperiores et quam eveniet. Hic repellat architecto, cumque distinctio ullam error neque voluptas cupiditate repellendus. Et maiores quidem dolore inventore?
+            
+            <!-- Sub Topic -->
+            <div class="media">
+                <a class="media-left media-top" href="#">
+                    <img src="images/img.ico" class="media-left" alt="SubTopic">
+                </a>
+                <div class ="media-body">
+                    <h5 class="media-heading">
+                        {{ eachSubTopic.sub_title }}
+                    </h5>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem iure voluptatum voluptas, rerum veniam nulla natus impedit, expedita maxime nostrum minima, fuga totam magnam delectus molestiae a mollitia officiis asperiores?
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+
+</body>
+
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{% static 'js/jquery-3.2.1.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+
+</html>

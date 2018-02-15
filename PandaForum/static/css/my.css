@@ -1,0 +1,28 @@
+.crop {
+    height: 300px;
+    width: 200px;
+    overflow: hidden;
+   }
+
+.crop img {
+    height: auto;
+    width: 200px;
+   }
+
+bg{
+    position: relative;
+    z-index: 1;
+}
+
+.bg .bgimg {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: url("/static/images/PandaForumBg2.jpg") top center;
+    opacity: .4;
+    width: 100%;
+    height: 100%;
+}

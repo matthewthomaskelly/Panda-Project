@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block body_block %}
+
+    <!-- Main topic  -->
+    {% for eachTopic in topics %}
+    <div class="media">
+        <a class="media-left media-top" href="#">
+            <img src="{% static "images/img.ico" %}" class="img-fluid" alt="Topic" height="15%">
+        </a>
+        <div class="media-body">
+            <h3 class="media-heading mt-3">
+                {{ eachTopic.title }}
+            </h3>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae inventore asperiores et quam eveniet. Hic repellat architecto, cumque distinctio ullam error neque voluptas cupiditate repellendus. Et maiores quidem dolore inventore?
+            
+            <!-- Sub Topic -->
+            {% for eachSubTopic in subtopics %}
+            <div class="media">
+                <a class="media-left media-top" href="#">
+                    <img src="{% static "images/img.ico" %}" class="img-fluid" alt="SubTopic" height="15%">
+                </a>
+                <div class ="media-body">
+                    <h4 class="media-heading mt-3">
+                        {{ eachSubTopic.sub_title }}
+                    </h4>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem iure voluptatum voluptas, rerum veniam nulla natus impedit, expedita maxime nostrum minima, fuga totam magnam delectus molestiae a mollitia officiis asperiores?
+                    
+                    <!-- Threads -->
+                    {% for eachThread in threads %}
+                    <div class="media">
+                        <div class ="media-body">
+                            {{ eachThread.as_p }}
+                            
+                            <!-- Replies  -->
+                            {% for eachReply in replies %}
+                            <div class="media">
+                                <div class ="media-body">
+                                    {{ eachReply.as_p }}
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <!-- end of Replies -->
+
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <!-- end of Threads -->
+
+                </div>
+            </div>
+            {% endfor %}
+            <!-- end of SubTopics -->
+
+        </div>
+    </div>
+    {% endfor %}
+    <!-- end of Topic  -->
+
+{% endblock body_block %}
