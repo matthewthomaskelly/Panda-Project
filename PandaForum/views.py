@@ -10,27 +10,35 @@ def index(request):
 
     context_dict = {}
 
-    topics = Topic.objects.all()
-    context_dict['topics'] = topics
+    # get all topics
+    Topics = Topic.objects.all()
+    context_dict['topics'] = Topics
+    print("Topics: " + str(Topics) )
 
-    context_dict['subtopics'] = {}
-    for each in topics:
-        print(each)
-        subtopics = SubTopic.objects.filter(topic=each)
-        context_dict['subtopics'].update( subtopics )
+    # loop through each topic and get related sub topics
+    for eachTopic in Topics:
+        context_dict[str(eachTopic)]['subtopics'] = {}
+        SubTopics = eachTopic.subtopic_set.all()
+        context_dict[str(eachTopic)]['subtopics'] = SubTopics
+        print ("SubTopics: " + str(SubTopics) )
+    
+        # for each sub-topic, loop through each Thread
+        for eachSubTopic in SubTopics:
+            #context_dict[str(eachTopic)][str(eachSubTopic)] = {}
+            context_dict[str(eachTopic)][str(eachSubTopic)]['threads'] = {}
+            Threads = eachSubTopic.thread_set.all()
+            context_dict[str(eachTopic)][str(eachSubTopic)]['threads'] = Threads
+            print("Threads: " + str(Threads) )
+    
+            # for each thread, loop through each reply
+            for eachThread in Threads:
+                context_dict[str(eachTopic)][str(eachSubTopic)][str(eachThread)]['replies'] = {}    
+                Replies = eachThread.reply_set.all()
+                print ("Replies: " + str(Replies) )
 
-    context_dict['threads'] = {}
-    for each in subtopics:
-        print (each)
-        threads = Thread.objects.filter(thread=each)
-        context_dict['threads'].update(threads)
-
-    context_dict['replies'] = {}
-    for each in threads:
-        print(each)
-        replies = Reply.objects.filter(reply=each)
-        context_dict['replies'].update(replies)
+                #context_dict[str(eachTopic)][str(eachSubTopic)][str(eachThread)] = Replies
+                context_dict[str(eachTopic)][str(eachSubTopic)][str(eachThread)]['replies'] = Replies
+            
 
     # this is the view
-    return render(request, 'index.html', context_dict)
-
+    return render(request, 'index.html', {"context_dict": context_dict} )
